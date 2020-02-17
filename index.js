@@ -17,38 +17,38 @@ function HttpAuth(config, stuff) {
   return self
 }
 
-HttpAuth.prototype.authenticate = function(user, password, cb) {
+function verify(user, password, cb) {
   var self = this
+
+  self._logger.info(
+    `user: ${user}, password: ${password}, auth_url: ${self._config.url}`
+  )
   axios({
     method: 'get',
     url: `${self._config.url}?username=${user}&password=${password}`,
   })
     .then(response => {
       if (response.data.errNo !== 0) {
+        self._logger.info(
+          `user: ${user}, password: ${password}, status: no, data: ${JSON.stringify(
+            response.data
+          )}`
+        )
         return cb(null, false)
       } else {
+        self._logger.warn(
+          `user: ${user}, password: ${password}, status: yes, data: ${JSON.stringify(
+            response.data
+          )}`
+        )
         return cb(null, [user])
       }
     })
     .catch(err => {
-      return cb(null, false)
+      self._logger.error(err.message || `plugins "http-auth" system error`)
+      return cb(err)
     })
 }
 
-HttpAuth.prototype.adduser = function(user, password, cb) {
-  var self = this
-  axios({
-    method: 'get',
-    url: `${self._config.url}?username=${user}&password=${password}`,
-  })
-    .then(response => {
-      if (response.data.errNo !== 0) {
-        return cb(null, false)
-      } else {
-        return cb(null, [user])
-      }
-    })
-    .catch(err => {
-      return cb(null, false)
-    })
-}
+HttpAuth.prototype.authenticate = verify
+HttpAuth.prototype.adduser = verify
