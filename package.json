@@ -1,6 +1,6 @@
 {
-  "name": "iris",
-  "version": "1.0.0",
+  "name": "sinopia-http-auth",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gozeon/iris.git"
+    "url": "git+https://github.com/gozeon/sinopia-http-auth.git"
   },
   "husky": {
     "hooks": {
@@ -23,10 +23,12 @@
   "author": "goze",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gozeon/iris/issues"
+    "url": "https://github.com/gozeon/sinopia-http-auth/issues"
   },
-  "homepage": "https://github.com/gozeon/iris#readme",
-  "dependencies": {},
+  "homepage": "https://github.com/gozeon/sinopia-http-auth#readme",
+  "dependencies": {
+    "axios": "^0.19.2"
+  },
   "devDependencies": {
     "husky": "^4.0.9",
     "prettier": "^1.19.1",
