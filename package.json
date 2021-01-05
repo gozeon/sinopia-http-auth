@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/gozeon/sinopia-http-auth#readme",
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.21.1"
   },
   "devDependencies": {
     "husky": "^4.0.9",
